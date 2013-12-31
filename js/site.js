@@ -74,9 +74,32 @@ $(document).ready(function(){
         $videoPause.addClass('active');
     });
     $videoPlay.trigger('click');
-       
     
-    (function(){
+    
+    
+    
+    function preloadImage(imgName, imageReady){
+        var cacheImage = document.createElement('img');
+        cacheImage.src = imgName;
+        
+        var interval = setInterval(function(){ //по таймеру чекаємо чи картинка загрузилася
+                if(_isImageOk(cacheImage)){
+                    clearInterval(interval);            
+                    imageReady();
+                }
+        }, 200);
+        
+        function _isImageOk(img) { //перевіряєм чи картинка повністю завантажилася
+            if (!img.complete) {return false;}
+    
+            if (typeof img.naturalWidth != "undefined" && img.naturalWidth == 0) {
+              return false;
+            }
+            return true;
+        }
+    } 
+
+    function longPicDragging(){
         var picWrap = $('.long_pic-wrap'),
             pic = $('.long_pic'),
             pic_w,
@@ -121,8 +144,9 @@ $(document).ready(function(){
                 pic.css('margin-left', '0'); 
             }                            
         }
-    })();
-
+    }
     
+    preloadImage($('.long_pic').prop('src'), longPicDragging);
+         
     
 });

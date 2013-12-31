@@ -91,7 +91,7 @@
         paginationList = "";
     
     $.fn.transformPage = function(settings, pos, index) {
-        if(document.all && !window.atob) {
+        if( (document.all && !window.atob) || (navigator.userAgent.indexOf("Opera") >= 0) ) {
             $(this).animate({
                 top: pos + '%'
             }, settings.animationTime, function() {

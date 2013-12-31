@@ -70,6 +70,8 @@ a{
         position:relative;
     }        
         .nav-dot {
+            position:absolute;
+            margin:0;
             width:21px;
             height:21px;
             border-color:#ff0d0d;
@@ -80,10 +82,7 @@ a{
                     transition: all 0.5s;
             -webkit-transition: all 0.5s;
                -moz-transition: all 0.5s;
-                -ms-transition: all 0.5s;
-            
-            position:absolute;margin:auto;
-            left:0;right:0;top:0;bottom:0;                
+                -ms-transition: all 0.5s;                        
         }
 
         .nav-dot:hover {
